@@ -1,0 +1,8 @@
+interface:
+  display_name: "Obsidian 標點正規化"
+  short_description: "批次整理 Markdown 中文標點"
+  default_prompt: "Use $obsidian-punctuation-normalizer to normalize punctuation in this Obsidian Markdown folder."
+
+policy:
+  allow_implicit_invocation: true
+

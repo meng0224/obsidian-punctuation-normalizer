@@ -1,0 +1,15 @@
+# Windows / macOS
+Thumbs.db
+.DS_Store
+
+# Editor / temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+~$*
+
+# PowerShell / local run artifacts
+*.log
+*.transcript
+
