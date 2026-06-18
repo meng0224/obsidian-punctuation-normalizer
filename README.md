@@ -1,17 +1,17 @@
 # Obsidian Punctuation Normalizer
 
-Codex skill for normalizing Chinese/Western punctuation in Obsidian Markdown notes while preserving Markdown and Obsidian syntax.
+用於整理 Obsidian / Markdown 文件標點的 Codex skill。它會在保留 Markdown 與 Obsidian 語法的前提下，正規化中文與西文標點。
 
 這是一個 **Codex skill**，用來協助 Codex 批次整理 Obsidian / Markdown 文件中的中文標點、半形/全形符號與局部空格。它不是 Obsidian community plugin，不會安裝到 Obsidian 的 plugins folder，也不會在 Obsidian UI 裡新增指令。
 
-## What it does
+## 功能
 
-- Converts CJK-context punctuation to Traditional Chinese typography, for example comma to ，, period to 。, question mark to ？.
-- Converts Chinese-context parentheses and paired straight quotes where appropriate.
-- Preserves Markdown and Obsidian structures such as YAML frontmatter, code blocks, inline code, Markdown links, images, wikilinks, embeds, tables, URLs, decimals, percentages, filenames, and English phrases.
-- Runs a dry run first so Codex can inspect the planned changes before writing.
+- 將中文語境中的標點轉成台灣繁中常用排版，例如半形逗號轉成 `，`、半形句號轉成 `。`、半形問號轉成 `？`。
+- 依中文語境轉換括號與成對引號。
+- 保留 Markdown 與 Obsidian 結構，例如 YAML frontmatter、code blocks、inline code、Markdown links、images、wikilinks、embeds、tables、URLs、小數、百分比、檔名與英文片語。
+- 先執行 dry run，讓 Codex 在真正寫入前檢查預計變更。
 
-## Repository layout
+## 專案結構
 
     obsidian-punctuation-normalizer/
     ├── SKILL.md
@@ -20,56 +20,56 @@ Codex skill for normalizing Chinese/Western punctuation in Obsidian Markdown not
     └── scripts/
         └── normalize_obsidian_punctuation.ps1
 
-`SKILL.md` is the skill entrypoint read by Codex. The PowerShell script in `scripts/` is the deterministic bundled tool used by the skill.
+`SKILL.md` 是 Codex 讀取的 skill 入口。`scripts/` 裡的 PowerShell 腳本是這個 skill 會呼叫的 deterministic bundled tool。
 
-## Installation
+## 安裝方式
 
-Clone this repository into your Codex skills directory:
+將這個 repository clone 到你的 Codex skills 目錄：
 
     git clone https://github.com/meng0224/obsidian-punctuation-normalizer.git "$env:USERPROFILE\.codex\skills\obsidian-punctuation-normalizer"
 
-Or manually copy the whole folder to:
+也可以手動把整個資料夾複製到：
 
     %USERPROFILE%\.codex\skills\obsidian-punctuation-normalizer
 
-Restart Codex or reload skills if needed.
+必要時重新啟動 Codex，或重新載入 skills。
 
-## Usage
+## 使用方式
 
-Ask Codex to use the skill on a Markdown file or Obsidian vault folder, for example:
+請 Codex 對某個 Markdown 檔案或 Obsidian vault 資料夾使用這個 skill，例如：
 
     Use $obsidian-punctuation-normalizer to normalize punctuation in this Obsidian Markdown folder.
 
-The skill is designed to:
+這個 skill 的預期流程是：
 
-1. Inspect the target first.
-2. Run a dry run.
-3. Review whether the planned changes look safe.
-4. Apply the normalization.
-5. Verify Markdown / Obsidian syntax-sensitive areas.
+1. 先檢查目標路徑。
+2. 先跑 dry run。
+3. 檢查預計變更是否安全。
+4. 套用標點正規化。
+5. 驗證 Markdown / Obsidian 語法敏感區域沒有被破壞。
 
-## Direct script usage
+## 直接執行腳本
 
-You can also run the bundled script manually:
+你也可以手動執行 bundled script：
 
     & ".\scripts\normalize_obsidian_punctuation.ps1" -Path "C:\path\to\vault" -DryRun -VerboseReport
 
-Apply changes after reviewing the dry-run output:
+確認 dry-run 輸出合理後，再套用變更：
 
     & ".\scripts\normalize_obsidian_punctuation.ps1" -Path "C:\path\to\vault" -VerboseReport
 
-Include subfolders when intended:
+如果確定要包含子資料夾，加入 `-Recurse`：
 
     & ".\scripts\normalize_obsidian_punctuation.ps1" -Path "C:\path\to\vault" -Recurse -DryRun -VerboseReport
 
-## Notes
+## 注意事項
 
-- Folder targets are non-recursive by default.
-- Always prefer `-DryRun` before writing to a real vault.
-- If the target is not tracked by Git, rollback depends on cloud sync history, file history, or backups.
-- This tool normalizes punctuation and local spacing only; it is not intended to rewrite prose.
+- 資料夾目標預設不會遞迴處理子資料夾。
+- 對真實 vault 寫入前，建議一律先使用 `-DryRun`。
+- 如果目標沒有 Git 版本控管，回復變更會依賴雲端同步歷史、檔案歷程或備份。
+- 這個工具只正規化標點與局部空格，不會改寫文章內容。
 
-## License
+## 授權
 
 MIT
 
