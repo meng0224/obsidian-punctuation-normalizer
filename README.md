@@ -2,8 +2,6 @@
 
 用於整理 Obsidian / Markdown 文件標點的 Codex skill。它會在保留 Markdown 與 Obsidian 語法的前提下，正規化中文與西文標點。
 
-這是一個 **Codex skill**，用來協助 Codex 批次整理 Obsidian / Markdown 文件中的中文標點、半形/全形符號與局部空格。它不是 Obsidian community plugin，不會安裝到 Obsidian 的 plugins folder，也不會在 Obsidian UI 裡新增指令。
-
 ## 功能
 
 - 將中文語境中的標點轉成台灣繁中常用排版，例如半形逗號轉成 `，`、半形句號轉成 `。`、半形問號轉成 `？`。
